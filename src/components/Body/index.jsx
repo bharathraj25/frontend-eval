@@ -5,7 +5,7 @@ import SearchContainer from '../SearchContainer';
 import EventCard from '../EventCard';
 import RadioCheckbox from '../RadioCheckbox';
 import makeRequest from '../../utils/makeRequest';
-import { EVENTS_URL } from '../../constants/apiEndPoints';
+import { EVENTS_URL, UPDATE_EVENT } from '../../constants/apiEndPoints';
 
 function Body() {
   const [selectedBox, setSelectedBox] = useState('All');
@@ -14,6 +14,19 @@ function Body() {
   const [searchName, setSearchName] = useState(undefined);
 
   const [openFilter, setOpenFilter] = useState(false);
+
+  const updateBookmark = async (isBookmarked, eventId) => {
+    try {
+      console.log(isBookmarked, 'isBookmarked');
+      await makeRequest(UPDATE_EVENT(eventId), {
+        data: {
+          isBookmarked,
+        },
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
   useEffect(() => {
     try {
@@ -96,7 +109,7 @@ function Body() {
         </div>
         <div className="body-content">
           {filteredEvents.map(event => {
-            return <EventCard event={event} />;
+            return <EventCard event={event} updateBookmark={updateBookmark} />;
           })}
           {/* <EventCard /> */}
         </div>

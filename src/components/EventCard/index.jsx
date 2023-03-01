@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import './EventCard.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBookmark as faBookmarkSolid, faCircleCheck, faCircleXmark } from '@fortawesome/free-solid-svg-icons';
@@ -8,8 +8,9 @@ import { ThemeContext } from '../../context/ThemeProvider';
 import { getDate } from '../../utils/common';
 // import { faBookmark } from '@fortawesome/free-regular-svg-icons';
 
-function EventCard({ event }) {
+function EventCard({ event, updateBookmark }) {
   const { themeColor } = useContext(ThemeContext);
+  const [bookmark, setBookmark] = useState(event.isBookmarked);
   return (
     <div className="event-card-container" style={{ 'background-color': themeColor }}>
       <img src={event.imgUrl} alt="event" />
@@ -39,10 +40,26 @@ function EventCard({ event }) {
               </div>
             )}
           </div>
-          {event.isBookmarked ? (
-            <FontAwesomeIcon icon={faBookmarkSolid} style={{ height: '35px', color: '#EA8282' }} />
+          {bookmark ? (
+            <FontAwesomeIcon
+              icon={faBookmarkSolid}
+              style={{ height: '35px', color: '#EA8282' }}
+              role="button"
+              onClick={() => {
+                updateBookmark(!bookmark, event.id);
+                setBookmark(!bookmark);
+              }}
+            />
           ) : (
-            <FontAwesomeIcon icon={faBookmarkRegular} style={{ height: '35px', color: '#EA8282' }} />
+            <FontAwesomeIcon
+              icon={faBookmarkRegular}
+              style={{ height: '35px', color: '#EA8282' }}
+              role="button"
+              onClick={() => {
+                updateBookmark(!bookmark, event.id);
+                setBookmark(!bookmark);
+              }}
+            />
           )}
         </div>
       </div>
