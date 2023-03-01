@@ -1,19 +1,33 @@
+/* eslint-disable jsx-a11y/interactive-supports-focus */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable react/prop-types */
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './EventCard.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBookmark as faBookmarkSolid, faCircleCheck, faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 import { faBookmark as faBookmarkRegular } from '@fortawesome/free-regular-svg-icons';
+import { useNavigate } from 'react-router-dom';
 import { ThemeContext } from '../../context/ThemeProvider';
 import { getDate } from '../../utils/common';
+import { EVENT_ROUTE } from '../../constants/routes';
 // import { faBookmark } from '@fortawesome/free-regular-svg-icons';
 
 function EventCard({ event, updateBookmark, updateRegister, isPage }) {
+  const navigate = useNavigate();
   const { themeColor } = useContext(ThemeContext);
-  const [bookmark, setBookmark] = useState(event.isBookmarked);
-  const [registered, setRegistered] = useState(event.isRegistered);
+  const [bookmark, setBookmark] = useState(false);
+  const [registered, setRegistered] = useState(false);
+
+  useEffect(() => {
+    setBookmark(event.isBookmarked);
+    setRegistered(event.isRegistered);
+  }, [event]);
   return (
-    <div className="event-card-container" style={{ 'background-color': themeColor }}>
+    <div
+      className="event-card-container"
+      style={{ 'background-color': themeColor }}
+      role="button"
+      onClick={() => isPage ?? navigate(`${EVENT_ROUTE}/${event.id}`)}>
       <img src={event.imgUrl} alt="event" />
       <div className="event-card-content">
         <span className="event-name">{event.name}</span>
@@ -46,7 +60,9 @@ function EventCard({ event, updateBookmark, updateRegister, isPage }) {
               icon={faBookmarkSolid}
               style={{ height: '35px', color: '#EA8282' }}
               role="button"
-              onClick={() => {
+              onClick={e => {
+                e.stopPropagation();
+                e.preventDefault();
                 updateBookmark(!bookmark, event.id);
                 setBookmark(!bookmark);
               }}
@@ -56,7 +72,9 @@ function EventCard({ event, updateBookmark, updateRegister, isPage }) {
               icon={faBookmarkRegular}
               style={{ height: '35px', color: '#EA8282' }}
               role="button"
-              onClick={() => {
+              onClick={e => {
+                e.stopPropagation();
+                e.preventDefault();
                 updateBookmark(!bookmark, event.id);
                 setBookmark(!bookmark);
               }}
@@ -68,6 +86,7 @@ function EventCard({ event, updateBookmark, updateRegister, isPage }) {
             <button
               type="button"
               style={{ color: themeColor }}
+              disabled={!event.areSeatsAvailable}
               onClick={() => {
                 updateRegister(!registered, event.id);
                 setRegistered(!registered);

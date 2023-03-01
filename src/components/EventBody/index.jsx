@@ -38,9 +38,9 @@ function EventBody() {
     });
   }, []);
   return (
-    <div className="event-page-body">
-      <div className="center-padding">
-        <div className="each-event-container">
+    <div className="center-padding">
+      <div className="each-event-container">
+        <div className="event-page-body">
           <EventCard event={event} isPage updateBookmark={updateBookmark} updateRegister={updateRegister} />
         </div>
       </div>

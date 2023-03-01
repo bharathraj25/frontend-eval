@@ -63,7 +63,8 @@ function Body() {
   };
 
   const searchEvents = eventName => {
-    if (eventName) setFilteredEvents(events.filter(event => event.name.toLowerCase().includes(eventName)));
+    if (eventName)
+      setFilteredEvents(events.filter(event => event.name.toLowerCase().includes(eventName.toLowerCase())));
     else setFilteredEvents(events);
   };
 
