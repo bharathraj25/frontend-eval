@@ -1,0 +1,33 @@
+.body-container {
+  padding: 3% 0;
+  font-family: 'Sofia Sans', sans-serif;
+}
+
+.body-filter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.body-header {
+  margin-bottom: 20px;
+}
+
+.body-content {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 10%;
+  row-gap: 5%;
+}
+
+.body-filter-options {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+@media only screen and (max-width: 799px) {
+  .body-content {
+    row-gap: 2%;
+    grid-template-columns: repeat(1, 1fr);
+  }
+}

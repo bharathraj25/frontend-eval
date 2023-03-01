@@ -1,9 +1,12 @@
 import React from 'react';
+import { Header, Body, Footer } from '../../components';
 
 function Home() {
   return (
     <div>
-      <h1>Sample React App!</h1>
+      <Header />
+      <Body />
+      <Footer />
     </div>
   );
 }

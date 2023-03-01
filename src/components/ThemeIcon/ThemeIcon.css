@@ -1,0 +1,9 @@
+.theme-icon {
+  height: 40px;
+  aspect-ratio: 1/1;
+  border: 0 solid;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 5px;
+}

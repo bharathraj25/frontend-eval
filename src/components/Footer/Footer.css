@@ -1,0 +1,49 @@
+.footer {
+  padding: 2% 0%;
+  color: white;
+  font-family: 'Sofia Sans', sans-seri;
+  font-size: 20px;
+  text-transform: uppercase;
+  font-weight: 600;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+}
+
+.theme-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.theme-options {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  column-gap: 20px;
+}
+
+.theme-save button {
+  font-size: 10px;
+  border: 0 solid;
+  border-radius: 5px;
+  padding: 8px 15px;
+  font: inherit;
+  font-size: 15px;
+  text-transform: uppercase;
+}
+
+@media only screen and (max-width: 390px) {
+  .theme-save button {
+    font-size: 15px;
+  }
+
+  .theme-options {
+    column-gap: 4px;
+  }
+  .footer {
+    font-size: 15px;
+  }
+}
