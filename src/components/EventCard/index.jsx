@@ -8,9 +8,10 @@ import { ThemeContext } from '../../context/ThemeProvider';
 import { getDate } from '../../utils/common';
 // import { faBookmark } from '@fortawesome/free-regular-svg-icons';
 
-function EventCard({ event, updateBookmark }) {
+function EventCard({ event, updateBookmark, updateRegister, isPage }) {
   const { themeColor } = useContext(ThemeContext);
   const [bookmark, setBookmark] = useState(event.isBookmarked);
+  const [registered, setRegistered] = useState(event.isRegistered);
   return (
     <div className="event-card-container" style={{ 'background-color': themeColor }}>
       <img src={event.imgUrl} alt="event" />
@@ -33,7 +34,7 @@ function EventCard({ event, updateBookmark }) {
                 <span style={{ color: '#ECECAB' }}> No Seats Available</span>
               </div>
             )}
-            {event.isRegistered && (
+            {registered && (
               <div className="align-center">
                 <FontAwesomeIcon icon={faCircleCheck} style={{ height: '35px', color: '#A0F3AD' }} />
                 <span style={{ color: '#A0F3AD' }}> Registered</span>
@@ -62,6 +63,19 @@ function EventCard({ event, updateBookmark }) {
             />
           )}
         </div>
+        {isPage && (
+          <div className="register-button">
+            <button
+              type="button"
+              style={{ color: themeColor }}
+              onClick={() => {
+                updateRegister(!registered, event.id);
+                setRegistered(!registered);
+              }}>
+              {registered ? 'UnRegister' : 'Register'}
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );

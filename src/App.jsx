@@ -1,10 +1,15 @@
 import React, { useContext, useEffect } from 'react';
 import './App.css';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Home } from './pages';
-import 'font-awesome/css/font-awesome.min.css';
 import { ThemeContext } from './context/ThemeProvider';
 import makeRequest from './utils/makeRequest';
 import { THEME_URL } from './constants/apiEndPoints';
+import { Footer, Header } from './components';
+import { ERROR_ROUTE, EVENT_ROUTE, HOME_ROUTE } from './constants/routes';
+import NotFoundPage from './pages/NotFoundPage';
+import ErrorPage from './pages/ErrorPage';
+import EventPage from './pages/EventPage';
 
 function App() {
   const { setThemes, updateThemeColor } = useContext(ThemeContext);
@@ -20,7 +25,18 @@ function App() {
   }, []);
   return (
     <div className="App">
-      <Home />
+      <Header />
+      <div className="appBodyContainer">
+        <BrowserRouter>
+          <Routes>
+            <Route path={HOME_ROUTE} element={<Home />} />
+            <Route path={`${EVENT_ROUTE}/:eventId`} element={<EventPage />} />
+            <Route path={`${ERROR_ROUTE}/:errorCode?`} element={<ErrorPage />} />
+            <Route path="*" element={<NotFoundPage />} />
+          </Routes>
+        </BrowserRouter>
+      </div>
+      <Footer />
     </div>
   );
 }

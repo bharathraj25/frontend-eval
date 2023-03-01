@@ -119,3 +119,14 @@
     -webkit-line-clamp: 4;
   }
 }
+
+.register-button button {
+  font-size: 10px;
+  border: 0 solid;
+  border-radius: 5px;
+  padding: 8px 15px;
+  font: inherit;
+  font-size: 15px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
