@@ -25,7 +25,6 @@ export function ThemeProvider({ children }) {
   ]);
   const updateThemeColor = themeId => {
     const themeObj = themes.filter(theme => theme.id === themeId);
-    console.log(themeId, themeObj, themes);
     if (themeObj.length !== 0) setThemeColor(themeObj[0].colorHexCode);
   };
   return (

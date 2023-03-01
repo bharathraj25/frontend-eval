@@ -29,7 +29,6 @@ function Footer() {
           <div className="theme-options">
             <span>THEMES</span>
             {themes.map(theme => {
-              // console.log(theme.colorHexCode, themeColor);
               if (theme.colorHexCode !== themeColor)
                 return <ThemeIcon id={theme.id} themeColor={theme.colorHexCode} updateTheme={updateTheme} />;
               return undefined;

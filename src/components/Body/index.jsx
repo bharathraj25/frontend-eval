@@ -17,7 +17,6 @@ function Body() {
 
   const updateBookmark = async (isBookmarked, eventId) => {
     try {
-      console.log(isBookmarked, 'isBookmarked');
       await makeRequest(UPDATE_EVENT(eventId), {
         data: {
           isBookmarked,

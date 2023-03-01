@@ -11,7 +11,6 @@ function App() {
   useEffect(() => {
     try {
       makeRequest(THEME_URL).then(allThemes => {
-        console.log('allThemes >>>>', allThemes);
         setThemes(allThemes.themes);
         updateThemeColor(allThemes.preferredThemeId);
       });
