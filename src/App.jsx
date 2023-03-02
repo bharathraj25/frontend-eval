@@ -25,18 +25,18 @@ function App() {
   }, []);
   return (
     <div className="App">
-      <Header />
       <div className="appBodyContainer">
         <BrowserRouter>
+          <Header />
           <Routes>
             <Route path={HOME_ROUTE} element={<Home />} />
             <Route path={`${EVENT_ROUTE}/:eventId`} element={<EventPage />} />
             <Route path={`${ERROR_ROUTE}/:errorCode?`} element={<ErrorPage />} />
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
+          <Footer />
         </BrowserRouter>
       </div>
-      <Footer />
     </div>
   );
 }

@@ -37,12 +37,12 @@
 
 .event-desc {
   height: 35%;
+  overflow: hidden;
   /* font-size: ; */
   font-family: 'Sofia Sans', sans-serif;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 7;
-  overflow: hidden;
   font-size: 18px;
 }
 
